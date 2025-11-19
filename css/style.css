@@ -1,0 +1,101 @@
+/*
+ * 1. Estilos Globais e Fundo
+ */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6; /* Um fundo cinza bem claro e suave */
+    color: #333; /* Cor do texto padrão escura */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente o conteúdo */
+    min-height: 100vh; /* Ocupa a altura total da viewport */
+    margin: 0;
+    padding: 20px;
+}
+
+/*
+ * 2. Estilo do Contêiner Principal
+ */
+.container {
+    background-color: #fff; /* Fundo branco para o bloco principal */
+    border-radius: 15px; /* Bordas arredondadas */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidade */
+    padding: 30px 40px;
+    width: 90%;
+    max-width: 500px; /* Limita a largura máxima para leitura confortável */
+    text-align: center;
+}
+
+/*
+ * 3. Título e Mensagens
+ */
+h1 {
+    color: #007bff; /* Azul vibrante */
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+#tentativas {
+    font-weight: bold;
+    color: #e94e77; /* Cor destacada para tentativas */
+    font-size: 1.1em;
+}
+
+#mensagem {
+    font-size: 1.2em;
+    font-style: italic;
+    min-height: 25px; /* Garante que o espaço não mude quando o texto aparecer */
+}
+
+/*
+ * 4. Input e Botão
+ */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    padding: 10px;
+    width: 60%;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    text-align: center;
+}
+
+button {
+    background-color: #28a745; /* Verde para ação */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px #1e7e34; /* Sombra interna para efeito 3D */
+}
+
+button:hover {
+    background-color: #1e7e34; /* Verde mais escuro ao passar o mouse */
+}
+
+button:active {
+    box-shadow: 0 2px #1e7e34; /* Efeito de clique */
+    transform: translateY(2px);
+}
+
+/* Linha horizontal */
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+    margin: 20px 0;
+}
