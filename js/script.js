@@ -12,96 +12,88 @@ Funcionalidades JavaScript:
         "Você acertou!" (e o jogo termina). ok
         "O número secreto é maior" (e o jogador continua tentando). ok
         "O número secreto é menor" (e o jogador continua tentando). ok
-    Decrementar o contador de tentativas.
-    Exibir o número de tentativas restantes.
+    Decrementar o contador de tentativas. ok
+    Exibir o número de tentativas restantes. ok
     Se o jogador atingir o número máximo de tentativas, o jogo termina com a mensagem "Você perdeu! O número secreto era X".
 
 
 */
 
 
-
-//define limite de tentativas
-let tentativas = 0;
-let limite = 10;
-const numeroDaSorte = Math.floor(Math.random() * 3) + 1;
-
-
-
-
-
-function validaPalpite(obterValorDoPalpite, numeroDaSorte){
+document.addEventListener('DOMContentLoaded', function() {
     
-    //valida palpite
-    if(!(obterValorDoPalpite >= 1 && obterValorDoPalpite <= 3)){
-        
-        console.log('palpite invalido');
+    // Variaveis gerais do jogo
 
-    }else if(obterValorDoPalpite === numeroDaSorte){
-        
-        console.log(numeroDaSorte);
-        console.log(obterValorDoPalpite);
-        console.log('voce acertou');
-        
+    let numeroSecreto = Math.floor(Math.random() * 100) + 1;
+    let tentativasRestantes = 10;
+
+    const palpiteInput = document.getElementById("palpite");
+    const chutarBtn = document.getElementById("chutar-btn");
+    const reiniciarBtn = document.getElementById("reiniciar-btn");
+    const mensagem = document.getElementById("mensagem");
+    const tentativasTexto = document.getElementById("tentativas");
+    
+    // Função para finalizar o jogo
+    
+    function finalizarJogo() {
+
+        chutarBtn.disabled = true;
+        palpiteInput.disabled = true;
+
+        reiniciarBtn.disabled = false;
+        reiniciarBtn.style.opacity = "1";
+        reiniciarBtn.style.cursor = "pointer";
     }
-}
+    
+    // Evento botão para chutar
+    
+    chutarBtn.addEventListener("click", () => {
 
-function dicaPalpites(obterValorDoPalpite, numeroDaSorte){
+        const palpite = Number(palpiteInput.value);
 
-    if(obterValorDoPalpite < numeroDaSorte){
-        console.log('Chute um numero mais alto!');
-    }else if(obterValorDoPalpite > numeroDaSorte){
-        console.log('Chute um numero mais baixo!');
-    } else {
-        console.log('O jogo acabou!');
-    }
-}
-
-
-
-const acoesBotao = document.getElementById('chutar-btn');
-
-acoesBotao.addEventListener('click', () => {
-        
-        if(tentativas < limite){
-
-            tentativas++;
-
-            console.log(`tente novamente você tentou ${tentativas} vezes de ${limite} tentativas.`);
-            
-
-            if(tentativas === limite){
-                console.log('suas jogadas acabaram.');
-
-                document.getElementById('chutar-btn').disabled = true;
-            }
+        if (!palpite || palpite < 1 || palpite > 100) {
+            mensagem.textContent = "Digite um número válido entre 1 e 100!";
+            return;
         }
-    });  
 
+        tentativasRestantes--;
+        tentativasTexto.textContent = `Tentativas restantes: ${tentativasRestantes}`;
 
-acoesBotao.addEventListener('click', executaPrograma);
+        if (palpite === numeroSecreto) {
+            mensagem.textContent = "🎉 Você acertou!";
+            finalizarJogo();
+            return;
+        }
 
+        if (palpite > numeroSecreto) {
+            mensagem.textContent = "🔽 Muito alto!";
+        } else {
+            mensagem.textContent = "🔼 Muito baixo!";
+        }
 
-function executaPrograma(){
+        if (tentativasRestantes <= 0) {
+            mensagem.textContent = `😢 Fim de jogo! O número era ${numeroSecreto}.`;
+            finalizarJogo();
+        }
 
-    //gera numero da sorte
+        palpiteInput.value = "";
+
+    });
     
-    console.log(numeroDaSorte);
-
-    //captura palpite
-    const obterValorDoPalpite = parseFloat(document.getElementById('palpite').value);
-    console.log(obterValorDoPalpite);
+    // Usar o enter para chutar
     
+    palpiteInput.addEventListener("keydown", (e) => {
 
-    validaPalpite(obterValorDoPalpite, numeroDaSorte);
-    dicaPalpites(obterValorDoPalpite, numeroDaSorte);
-
+        if (e.key === "Enter") {
+            e.preventDefault();
+            chutarBtn.click();
+        }
+    });
     
-}
-
-
+    // Botão reiniciar
     
+    reiniciarBtn.addEventListener("click", () => {
+        location.reload();
+    });
 
-
-
-
+});
