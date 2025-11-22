@@ -92,6 +92,38 @@ button:active {
     transform: translateY(2px);
 }
 
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Contêiner dos botões */
+.botoes-container {
+    display: flex;
+    gap: 12px;          /* Espaço entre os botões */
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Botão Chutar */
+#chutar-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Botão Reiniciar */
+#reiniciar-btn {
+    background-color: #7fcf99;
+    color: white;
+}
+
+/* Reiniciar desabilitado */
+#reiniciar-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* Linha horizontal */
 hr {
     border: 0;
